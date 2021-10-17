@@ -11,13 +11,13 @@ export mtdir=$(mktemp -d)
 mount $bdev -o subvol=/ $mtdir || exit
 
 btrfs subvolume delete $mtdir/$bootentry-umleitung || rm -rf $mtdir/$bootentry-umleitung
-btrfs subvolume snapshot $mtdir/$sourcesubvol $mtdir/$bootentry-umleitung
+btrfs subvolume snapshot $mtdir/$sourcesubvol $mtdir/$bootentry-umleitung || exit
 cd $mtdir && ln -snf $bootentry-umleitung $bootentry
 
 
 btrfs subvolume delete $mtdir/$bootentry-trash || rm -rf $mtdir/$bootentry-trash
 mv $mtdir/$bootentry-live $mtdir/$bootentry-trash
-btrfs subvolume snapshot $mtdir/$sourcesubvol $mtdir/$bootentry-live
+btrfs subvolume snapshot $mtdir/$sourcesubvol $mtdir/$bootentry-live || exit
 cd $mtdir && ln -snf $bootentry-live $bootentry
 
 btrfs subvolume delete $mtdir/$bootentry-umleitung
