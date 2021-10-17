@@ -26,4 +26,4 @@ We install our Operating System on a btrfs subvolume. We should make multiple sn
 I created a btrfs subvolume @nix and mounted it into /nix. The offical installing script seems to break on an existing /nix folder, so we see if installing nix from the apt repo works as good. Gives me an error
 
 3.
-There is some benefits coming here now. Active snapshots can be renamed easily
+There is some benefits coming here now. Any snapshots can be renamed easily, including mounted ones.
