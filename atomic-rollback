@@ -1,0 +1,8 @@
+# requisite: OfficialPath->@Activesnapshot-timestamp1
+
+oldName = $(readlink OfficialPath)
+
+newName = Activesnapshot-timestamp$(nå)
+btrfs sub snapshot ReadOnlySnapshøt $newName
+ln -s $newName OfficialPath
+btrfs subvolume delete oldName
